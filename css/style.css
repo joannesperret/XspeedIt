@@ -1,0 +1,102 @@
+/*{
+margin:0px;
+};*/
+html, body {
+    /*height: 100%; /* afin que le background recouvre tous les écran même quand leur heuteur est > body*/
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:black;
+}
+
+body{
+    background: url("../img/rome.jpg"); 
+    background-size: cover;   
+    height: 100%;
+}
+label{
+    color:palevioletred;
+}
+
+p{
+    color:black;
+    font-weight: cursive;
+    font-size:2rem;    
+    text-align:center;
+}
+
+#clic{
+    color:black;
+    font-weight: cursive;
+    font-size:1.1rem;    
+    text-align:center;
+    margin-top: 0 auto;
+}
+section{
+    height:100%;
+    width:80%;
+    margin:auto;
+}
+button:hover {
+    background: rgb(160, 33, 53);
+    color: #edecec ;
+}
+#divBtn{
+    margin-top: 3rem;
+    border:1px solid bisque;
+    opacity: 0.7;
+    background:white;    
+    width:22rem;
+    text-align: center;
+    height: 3rem;
+    font-size:1.1rem;
+}
+
+#divBtn:hover {
+    margin-top: 2.5rem;
+    border:1.5px solid bisque;    
+    background:bisque;    
+    width:23rem;
+    text-align: center;
+    height: 3.5rem;
+    font-size:1.15rem;
+}
+#in{
+    color:black;
+    border:1px solid bisque;
+    opacity: 0.7;
+    background:white;
+    margin: 0 auto;
+    width: 22rem;
+    height:5rem;
+    font-size:1.1rem;
+}
+div{
+    margin-top: 3rem;
+    border:1px solid bisque;
+    opacity: 0.7;
+    background:white;
+    margin:2rem auto;
+}
+#divIn{
+    margin-top: 3rem;
+    border:1px solid bisque;
+    opacity: 0.7;
+    background:white;    
+    width:22rem;
+    height:5rem;
+}
+#title{
+    text-align: center;
+    color:palevioletred;
+    opacity:0.7;
+}
+#divResult{
+    width:60rem;
+    border:none;
+    opacity: 0.7;
+    background:white;
+    margin: 0 auto;
+}
+#pResultats{
+    size:auto;  
+    color:palevioletred;
+}
