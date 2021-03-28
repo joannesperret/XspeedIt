@@ -2,13 +2,13 @@
 margin:0px;
 };*/
 html, body {
-    /*height: 100%; /* afin que le background recouvre tous les écran même quand leur heuteur est > body*/
+    /*height: 100%; /* afin que le background recouvre tous les écrans même quand leur hauteur est > body*/
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color:black;
 }
 
 body{
-    background: url("../img/rome.jpg"); 
+    background: url("../img/convoyeur.jpg"); 
     background-size: cover;   
     height: 100%;
 }
@@ -17,10 +17,11 @@ label{
 }
 
 p{
-    color:black;
     font-weight: cursive;
     font-size:2rem;    
     text-align:center;
+    color: orangered;
+    font-size: 1rem;
 }
 
 #clic{
@@ -38,26 +39,6 @@ section{
 button:hover {
     background: rgb(160, 33, 53);
     color: #edecec ;
-}
-#divBtn{
-    margin-top: 3rem;
-    border:1px solid bisque;
-    opacity: 0.7;
-    background:white;    
-    width:22rem;
-    text-align: center;
-    height: 3rem;
-    font-size:1.1rem;
-}
-
-#divBtn:hover {
-    margin-top: 2.5rem;
-    border:1.5px solid bisque;    
-    background:bisque;    
-    width:23rem;
-    text-align: center;
-    height: 3.5rem;
-    font-size:1.15rem;
 }
 #in{
     color:black;
@@ -99,4 +80,14 @@ div{
 #pResultats{
     size:auto;  
     color:palevioletred;
+}
+#resultats{
+    position: absolute;
+    top : 1rem;
+    right: 15%;
+    opacity : 1.3;
+    border : none;
+}
+.bleue{
+    color: royalblue;
 }
