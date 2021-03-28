@@ -1,2 +1,3 @@
-# Traduction_Romaine
-Script de traduction en nombre des chiffres Romains
+# XspeedIt
+Script d'optimisation de remplissage de colis.
+Exercice issu de ma formation de développeur Web.
