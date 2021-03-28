@@ -81,7 +81,7 @@ function init() {
         generateArticles();
 
         let affichageChaineArticles = document.getElementById("affichageChaineArticles");
-        affichageChaineArticles.innerHTML = chaineArticles.toString();
+        affichageChaineArticles.innerHTML = chaineArticles.join('');
         console.log('dernier caractère à supprimer')
 
         makeColis();
