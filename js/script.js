@@ -28,34 +28,36 @@ function init() {
         let i = 0;
         colis = [];
         while (i < chaineArticles.length) {
-            if (chaineArticles[i] + (chaineArticles[i + 1]) + (chaineArticles[i + 2]) <= 10) {
-                 console.log('colis de 3 séquences');
+            if ((chaineArticles[i] + (chaineArticles[i + 1]) + (chaineArticles[i + 2]) <= 10) 
+            && ((chaineArticles[i + 2] != undefined))) { 
+                console.log('colis de 3 séquences');
                 // console.log('i = ' + chaineArticles[i]);
                 // console.log('i + 1 = ' + chaineArticles[i + 1]);
                 // console.log(chaineArticles);
                 colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '' + chaineArticles[i + 1] + '/');
-                i = i+3;
-            }
-            if (chaineArticles[i] + (chaineArticles[i + 1]) > 10) {
-                // console.log('colis trop rempli');
-                // console.log('i = ' + chaineArticles[i]);
-                // console.log('i + 1 = ' + chaineArticles[i + 1]);
-                // console.log(chaineArticles);
-                colis.push(chaineArticles[i] + '/')
-                i++;
-            }
-            else {
-                if (chaineArticles[i + 1] != undefined) {
-
+                i = i + 3;
+            } else {
+                if (chaineArticles[i] + (chaineArticles[i + 1]) > 10) {
+                    // console.log('colis trop rempli');
                     // console.log('i = ' + chaineArticles[i]);
-                    // console.log('i + 1 = ' + chaineArticles[i + 1])
-                    colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '/');
-                    // console.log('colis' + colis);
+                    // console.log('i + 1 = ' + chaineArticles[i + 1]);
                     // console.log(chaineArticles);
-                    // console.log('on continue le remplissage');
-                    i = i + 2;
-                } else {
-                    colis.push(chaineArticles[i]);
+                    colis.push(chaineArticles[i] + '/')
+                    i++;
+                }
+                else {
+                    if (chaineArticles[i + 1] != undefined) {
+
+                        // console.log('i = ' + chaineArticles[i]);
+                        // console.log('i + 1 = ' + chaineArticles[i + 1])
+                        colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '/');
+                        // console.log('colis' + colis);
+                        // console.log(chaineArticles);
+                        // console.log('on continue le remplissage');
+                        i = i + 2;
+                    } else {
+                        colis.push(chaineArticles[i]);
+                    };
                 };
             };
         };
