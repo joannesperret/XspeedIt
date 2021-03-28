@@ -19,6 +19,7 @@ function init() {
             let randomColis;
             randomColis = Math.floor((Math.random() * (10 - 1) + 1));
             chaineArticles.push(randomColis);
+            console.log(chaineArticles);
         }
     };
 
@@ -28,13 +29,15 @@ function init() {
         let i = 0;
         colis = [];
         while (i < chaineArticles.length) {
-            if ((chaineArticles[i] + (chaineArticles[i + 1]) + (chaineArticles[i + 2]) <= 10) 
+            if (((chaineArticles[i] + chaineArticles[i + 1] + chaineArticles[i + 2]) <= 10) 
             && ((chaineArticles[i + 2] != undefined))) { 
                 console.log('colis de 3 séquences');
                 // console.log('i = ' + chaineArticles[i]);
                 // console.log('i + 1 = ' + chaineArticles[i + 1]);
                 // console.log(chaineArticles);
-                colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '' + chaineArticles[i + 1] + '/');
+                colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '' + chaineArticles[i + 2] + '/');
+                console.log(i);
+                console.log('1ère condition');
                 i = i + 3;
             } else {
                 if (chaineArticles[i] + (chaineArticles[i + 1]) > 10) {
@@ -43,6 +46,8 @@ function init() {
                     // console.log('i + 1 = ' + chaineArticles[i + 1]);
                     // console.log(chaineArticles);
                     colis.push(chaineArticles[i] + '/')
+                    console.log(i);
+                    console.log('2e condition');
                     i++;
                 }
                 else {
@@ -54,9 +59,14 @@ function init() {
                         // console.log('colis' + colis);
                         // console.log(chaineArticles);
                         // console.log('on continue le remplissage');
+                        console.log(i);
+                        console.log('3e condition');
                         i = i + 2;
                     } else {
+                        console.log(chaineArticles[i]);
                         colis.push(chaineArticles[i]);
+                        console.log('4e condition');
+                        i++;
                     };
                 };
             };
@@ -71,7 +81,7 @@ function init() {
         generateArticles();
 
         let affichageChaineArticles = document.getElementById("affichageChaineArticles");
-        affichageChaineArticles.innerHTML = chaineArticles.join('').slice(0, -1);
+        affichageChaineArticles.innerHTML = chaineArticles.toString();
         console.log('dernier caractère à supprimer')
 
         makeColis();
