@@ -3,7 +3,9 @@ function init() {
     // déclaration des variables globales
 
     let chaineArticles = new Array;
+    let optimizeChaineArticles = new Array;
     let colis = new Array;
+    let optimizedColis = new Array;
 
     // script optimisation colisage articles
 
@@ -19,7 +21,7 @@ function init() {
             let randomColis;
             randomColis = Math.floor((Math.random() * (10 - 1) + 1));
             chaineArticles.push(randomColis);
-            console.log(chaineArticles);
+           // console.log(chaineArticles);
         }
     };
 
@@ -29,15 +31,15 @@ function init() {
         let i = 0;
         colis = [];
         while (i < chaineArticles.length) {
-            if (((chaineArticles[i] + chaineArticles[i + 1] + chaineArticles[i + 2]) <= 10) 
-            && ((chaineArticles[i + 2] != undefined))) { 
-                console.log('colis de 3 séquences');
+            if (((chaineArticles[i] + chaineArticles[i + 1] + chaineArticles[i + 2]) <= 10)
+                && ((chaineArticles[i + 2] != undefined))) {
+                //console.log('colis de 3 séquences');
                 // console.log('i = ' + chaineArticles[i]);
                 // console.log('i + 1 = ' + chaineArticles[i + 1]);
                 // console.log(chaineArticles);
                 colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '' + chaineArticles[i + 2] + '/');
-                console.log(i);
-                console.log('1ère condition');
+                // console.log(i);
+                // console.log('1ère condition');
                 i = i + 3;
             } else {
                 if (chaineArticles[i] + (chaineArticles[i + 1]) > 10) {
@@ -46,8 +48,8 @@ function init() {
                     // console.log('i + 1 = ' + chaineArticles[i + 1]);
                     // console.log(chaineArticles);
                     colis.push(chaineArticles[i] + '/')
-                    console.log(i);
-                    console.log('2e condition');
+                    // console.log(i);
+                    // console.log('2e condition');
                     i++;
                 }
                 else {
@@ -59,15 +61,100 @@ function init() {
                         // console.log('colis' + colis);
                         // console.log(chaineArticles);
                         // console.log('on continue le remplissage');
-                        console.log(i);
-                        console.log('3e condition');
+                        // console.log(i);
+                        // console.log('3e condition');
                         i = i + 2;
                     } else {
-                        console.log(chaineArticles[i]);
+                        // console.log(chaineArticles[i]);
                         colis.push(chaineArticles[i]);
-                        console.log('4e condition');
+                        // console.log('4e condition');
                         i++;
                     };
+                };
+            };
+        };
+    };
+
+    // fonction optimisée
+
+    function optimizeColis() {
+        let i = 0;
+        optimizedColis = [];
+        optimizeChaineArticles = [];
+        optimizeChaineArticles = chaineArticles;
+        while (i < optimizeChaineArticles.length) {
+            if (((optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] + optimizeChaineArticles[i + 2]) == 10)
+                && ((optimizeChaineArticles[i + 2] != undefined))) {
+                // console.log('colis de 3 séquences');
+                optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '' + optimizeChaineArticles[i + 2] + '/');
+                //  console.log('i = ' + i);
+                // console.log('1ère condition');
+                i = i + 3;
+            } else {
+                if (optimizeChaineArticles[i + 1] != undefined) {
+                    if (optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] == 10) {
+                        optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '/')
+                        //  console.log('i = ' + i);
+                        // console.log('2e condition');
+                        i = i + 2;
+                    }
+                    else {
+                        // Ecriture de l'algo d'optimisation des séquences à apairer
+                        // suprimer pos(i)
+
+                        if (optimizeChaineArticles[i + 1] != undefined) {
+                            let j;
+                            for (j = i + 1; j < optimizeChaineArticles.length; j + 1) {
+                                console.log('boucle interne');
+                                // console.log('optimizeChaineArticles' + optimizeChaineArticles);
+                                if (optimizeChaineArticles[i] + optimizeChaineArticles[j] == 10) {
+                                    optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
+                                    console.log('Article à supprimer: ' + optimizeChaineArticles.splice(j, 1))
+                                    optimizeChaineArticles.splice(j, 1);
+                                    console.log('boucle interne 1');
+                                    //  console.log('optimizeChaineArticles' + optimizeChaineArticles);
+                                    //  console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                                    //  console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
+                                    i++;
+                                } else {
+                                    if (optimizeChaineArticles[j + 1] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] < 10)) {
+                                        optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
+                                        optimizeChaineArticles.splice(j, 1);
+                                        i++;
+                                        console.log('boucle interne 2');
+                                        console.log('optimizeChaineArticles' + optimizeChaineArticles);
+                                        console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                                        console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
+                                    } else {
+                                        break;
+                                    }
+
+                                }
+
+                            };
+                            optimizedColis.push(optimizeChaineArticles[i] + '/');
+                            i++;
+                            // console.log('i = ' + i);
+                            // console.log('j = ' + j);
+                            // console.log('3e condition');
+                            // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                            // console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
+                            // optimizedColis.push(optimizeChaineArticles[i]);
+                            // i++;
+                        } else {
+                            // gestion du dernier article
+                            console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                            optimizedColis.push(optimizeChaineArticles[i]);
+                            console.log('4e condition');
+                            break;
+                        };
+                    };
+                } else {
+                    // gestion du dernier article
+                    console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                    optimizedColis.push(optimizeChaineArticles[i]);
+                    console.log('5e condition');
+                    break;
                 };
             };
         };
@@ -100,6 +187,15 @@ function init() {
 
         let affichageNbColis = document.getElementById("affichageNbColis");
         affichageNbColis.innerHTML = colis.length + ' cartons utilisés.';
+
+        optimizeColis();
+
+        let affichageColisOptimized = document.getElementById("affichageOptimizedColis");
+        affichageColisOptimized.innerHTML = optimizedColis.join('');
+
+        let affichageNbColisOptimized = document.getElementById("affichageNbColisOptimized");
+        affichageNbColisOptimized.innerHTML = optimizedColis.length + ' cartons utilisés.';
+
     }
 
 };
