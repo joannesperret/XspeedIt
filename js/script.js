@@ -88,14 +88,14 @@ function init() {
                 // console.log('colis de 3 séquences');
                 optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '' + optimizeChaineArticles[i + 2] + '/');
                 //  console.log('i = ' + i);
-                // console.log('1ère condition');
+                console.log('1ère condition');
                 i = i + 3;
             } else {
                 if (optimizeChaineArticles[i + 1] != undefined) {
                     if (optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] == 10) {
                         optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '/')
                         //  console.log('i = ' + i);
-                        // console.log('2e condition');
+                        console.log('2e condition');
                         i = i + 2;
                     }
                     else {
@@ -105,11 +105,10 @@ function init() {
                         if (optimizeChaineArticles[i + 1] != undefined) {
                             let j;
                             for (j = i + 1; j < optimizeChaineArticles.length; j + 1) {
-                                console.log('boucle interne');
                                 // console.log('optimizeChaineArticles' + optimizeChaineArticles);
                                 if (optimizeChaineArticles[i] + optimizeChaineArticles[j] == 10) {
                                     optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
-                                    console.log('Article à supprimer: ' + optimizeChaineArticles.splice(j, 1))
+                                    console.log('Article à supprimer: ' + optimizeChaineArticles.splice(j, 1));
                                     optimizeChaineArticles.splice(j, 1);
                                     console.log('boucle interne 1');
                                     //  console.log('optimizeChaineArticles' + optimizeChaineArticles);
@@ -117,15 +116,39 @@ function init() {
                                     //  console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
                                     i++;
                                 } else {
-                                    if (optimizeChaineArticles[j + 1] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] < 10)) {
-                                        optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
-                                        optimizeChaineArticles.splice(j, 1);
-                                        i++;
-                                        console.log('boucle interne 2');
-                                        console.log('optimizeChaineArticles' + optimizeChaineArticles);
-                                        console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                                        console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
+                                    if (optimizeChaineArticles[j + 1] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] <= 10)) {
+                                       
+                                        // Si le lot d'articles ne se complète pas avec le suivant
+
+                                        let k = j+1;                       
+
+                                        for(k=0;k<optimizeChaineArticles.length;k++){
+                                            if(optimizeChaineArticles[i]+optimizeChaineArticles[j]+optimizeChaineArticles[k] == 10 ){
+                                                optimizedColis.push(optimizeChaineArticles[i]+''+optimizeChaineArticles[j]+''+optimizeChaineArticles[k]+'/');
+                                                i=i+3;
+                                                console.log('optimisation groupe de 3 séquences articles')
+                                            }else{k++; console.log('k = '+ k)};
+
+                                        };                                       
+                                        // optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
+                                        // console.log('boucle interne 2');                                        
+                                        // optimizeChaineArticles.splice(j, 1);
+                                        // console.log('Article à supprimer: ' + optimizeChaineArticles.splice(j, 1));
+                                        // console.log('Colis optimisé ' + optimizedColis );
+                                        j++;
+                                        // console.log('optimizeChaineArticles' + optimizeChaineArticles);
+                                        // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                                        // console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
+                                        
                                     } else {
+                                        // gestion des articles ne pouvant être complétés.*
+                                        // Algo d'optimisation à créer
+                                        
+                                    
+
+
+
+                                        console.log(optimizeChaineArticles[i]);                    
                                         break;
                                     }
 
@@ -143,17 +166,18 @@ function init() {
                             // i++;
                         } else {
                             // gestion du dernier article
-                            console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                            optimizedColis.push(optimizeChaineArticles[i]);
+                           // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                           // optimizedColis.push(optimizeChaineArticles[i]);
                             console.log('4e condition');
                             break;
                         };
                     };
                 } else {
                     // gestion du dernier article
-                    console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
+                   // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
                     optimizedColis.push(optimizeChaineArticles[i]);
                     console.log('5e condition');
+                    console.log('Chaine: '+ optimizeChaineArticles);
                     break;
                 };
             };
@@ -180,10 +204,10 @@ function init() {
         }
         else {
             affichageColis.innerHTML = colis.join('');
-            console.log('Précolisage ' + colis);
+         //   console.log('Précolisage ' + colis);
         }
-        console.log('Colis ' + colis);
-        console.log('Détail articles ' + chaineArticles);
+       // console.log('Colis ' + colis);
+       // console.log('Détail articles ' + chaineArticles);
 
         let affichageNbColis = document.getElementById("affichageNbColis");
         affichageNbColis.innerHTML = colis.length + ' cartons utilisés.';
