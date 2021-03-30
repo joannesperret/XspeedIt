@@ -21,7 +21,7 @@ function init() {
             let randomColis;
             randomColis = Math.floor((Math.random() * (10 - 1) + 1));
             chaineArticles.push(randomColis);
-           // console.log(chaineArticles);
+            console.log('push ligne 24');
         }
     };
 
@@ -38,7 +38,7 @@ function init() {
                 // console.log('i + 1 = ' + chaineArticles[i + 1]);
                 // console.log(chaineArticles);
                 colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '' + chaineArticles[i + 2] + '/');
-                // console.log(i);
+                console.log('push ligne 41');
                 // console.log('1ère condition');
                 i = i + 3;
             } else {
@@ -48,7 +48,7 @@ function init() {
                     // console.log('i + 1 = ' + chaineArticles[i + 1]);
                     // console.log(chaineArticles);
                     colis.push(chaineArticles[i] + '/')
-                    // console.log(i);
+                    console.log('push ligne 51');
                     // console.log('2e condition');
                     i++;
                 }
@@ -58,7 +58,7 @@ function init() {
                         // console.log('i = ' + chaineArticles[i]);
                         // console.log('i + 1 = ' + chaineArticles[i + 1])
                         colis.push(chaineArticles[i] + '' + chaineArticles[i + 1] + '/');
-                        // console.log('colis' + colis);
+                        console.log('push ligne 61');
                         // console.log(chaineArticles);
                         // console.log('on continue le remplissage');
                         // console.log(i);
@@ -67,7 +67,7 @@ function init() {
                     } else {
                         // console.log(chaineArticles[i]);
                         colis.push(chaineArticles[i]);
-                        // console.log('4e condition');
+                        console.log('push ligne 70');
                         i++;
                     };
                 };
@@ -120,13 +120,13 @@ function init() {
                                        
                                         // Si le lot d'articles ne se complète pas avec le suivant
 
-                                        let k = j+1;                       
+                                        let k = j + 1;                       
 
-                                        for(k=0;k<optimizeChaineArticles.length;k++){
+                                        for( k = j + 1;k<optimizeChaineArticles.length;k++){
                                             if(optimizeChaineArticles[i]+optimizeChaineArticles[j]+optimizeChaineArticles[k] == 10 ){
                                                 optimizedColis.push(optimizeChaineArticles[i]+''+optimizeChaineArticles[j]+''+optimizeChaineArticles[k]+'/');
                                                 i=i+3;
-                                                console.log('optimisation groupe de 3 séquences articles')
+                                                //console.log('optimisation groupe de 3 séquences articles')
                                             }else{k++; console.log('k = '+ k)};
 
                                         };                                       
@@ -141,22 +141,18 @@ function init() {
                                         // console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
                                         
                                     } else {
-                                        // gestion des articles ne pouvant être complétés.*
-                                        // Algo d'optimisation à créer
-                                        
-                                    
-
-
-
-                                        console.log(optimizeChaineArticles[i]);                    
+                                        //relance la boucle                   
                                         break;
                                     }
 
                                 }
 
                             };
-                            optimizedColis.push(optimizeChaineArticles[i] + '/');
-                            i++;
+                            if(optimizeChaineArticles[i]!=undefined){optimizedColis.push(optimizeChaineArticles[i] + '/');
+                            console.log('push ligne 152');
+                            i++;}else{i++};
+                            
+                            
                             // console.log('i = ' + i);
                             // console.log('j = ' + j);
                             // console.log('3e condition');
@@ -176,7 +172,7 @@ function init() {
                     // gestion du dernier article
                    // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
                     optimizedColis.push(optimizeChaineArticles[i]);
-                    console.log('5e condition');
+                    console.log('5e condition push');
                     console.log('Chaine: '+ optimizeChaineArticles);
                     break;
                 };
@@ -185,7 +181,6 @@ function init() {
     };
 
     // fonction d'affichage
-
 
     function afficher() {
 
@@ -204,7 +199,7 @@ function init() {
         }
         else {
             affichageColis.innerHTML = colis.join('');
-         //   console.log('Précolisage ' + colis);
+             //   console.log('Précolisage ' + colis);
         }
        // console.log('Colis ' + colis);
        // console.log('Détail articles ' + chaineArticles);
@@ -215,7 +210,14 @@ function init() {
         optimizeColis();
 
         let affichageColisOptimized = document.getElementById("affichageOptimizedColis");
-        affichageColisOptimized.innerHTML = optimizedColis.join('');
+
+        if ((optimizedColis.join('').substr(-1, 1)) === "/") {
+            affichageColisOptimized.innerHTML = optimizedColis.join('').slice(0, -1);
+        }
+        else {
+            affichageColisOptimized.innerHTML = optimizedColis.join('');
+        }
+        
 
         let affichageNbColisOptimized = document.getElementById("affichageNbColisOptimized");
         affichageNbColisOptimized.innerHTML = optimizedColis.length + ' cartons utilisés.';
