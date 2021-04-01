@@ -87,98 +87,75 @@ function init() {
         optimizeChaineArticles = [];
         reliquatColis = [];
         optimizeChaineArticles = chaineArticles;
-        while (i < optimizeChaineArticles.length) {
-            // if (((optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] + optimizeChaineArticles[i + 2]) == 10)
-            //     && ((optimizeChaineArticles[i + 2] != undefined))) {
-            //     // console.log('colis de 3 séquences');
-            //     optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '' + optimizeChaineArticles[i + 2] + '/');
-            //     console.log('i = ' + optimizeChaineArticles[i] + 'i+1'+optimizeChaineArticles[i+1]+ 'i+2'+optimizeChaineArticles[i+2]);
-            //     console.log('ligne 94 cumul 3 chaines consécutives = 10');
-            //     i = i + 3;
-            // } else {
-            //     if (optimizeChaineArticles[i + 1] != undefined) {
-            //         if (optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] == 10) {
-            //             optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '/')
-            //             console.log('ligne 101 2 chaines consécutives = 10');
-            //            // i = i + 2;
-            //             i++;
-            //         }
-            //         else {
-                        // Ecriture de l'algo d'optimisation des séquences à apairer
-                        
-                        if (optimizeChaineArticles[i + 1] != undefined) {
-                            let j;
-                            for (j = i + 1; j < optimizeChaineArticles.length; j + 1) {
-                                // console.log('optimizeChaineArticles' + optimizeChaineArticles);
-                                if (optimizeChaineArticles[i] + optimizeChaineArticles[j] == 10) {
-                                    optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
-                                    console.log('Article à supprimer: ' + optimizeChaineArticles.splice(j, 1));
+        while (i < optimizeChaineArticles.length) {            
+            if (optimizeChaineArticles[i + 1] != undefined) {
+                let j;
+                for (j = i + 1; j < optimizeChaineArticles.length; j + 1) {
+                    if (optimizeChaineArticles[i] + optimizeChaineArticles[j] == 10) {
+                        optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
+                        console.log('Articles push: '+optimizeChaineArticles[i] + '' + optimizeChaineArticles[j])
+                        optimizeChaineArticles.splice(j, 1);
+                        console.log('ligne 113 algo optimisation 2 colis = 10');
+                        i++;
+                    } else {
+                        if (optimizeChaineArticles[i + 2] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] != 10)) {
+
+                            // Si le lot d'articles ne se complète pas avec le suivant
+
+                            let k;
+
+                            for (k = j + 1; k < optimizeChaineArticles.length-1; k++) {
+                                if (optimizeChaineArticles[i] + optimizeChaineArticles[j] + optimizeChaineArticles[k] == 10) {
+                                    optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k] + '/');
                                     optimizeChaineArticles.splice(j, 1);
-                                    console.log('ligne 113 algo optimisation 2 colis = 10');
+                                    optimizeChaineArticles.splice(k, 1);
                                     i++;
+                                    console.log('ligne 109 concaténation 3 lots = 10');
+                                    console.log('Push lot de 3 '+ optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k]);
                                 } else {
-                                    if (optimizeChaineArticles[j + 1] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] != 10)) {
-
-                                        // Si le lot d'articles ne se complète pas avec le suivant
-
-                                        let k;
-
-                                        for (k = j + 1; k < optimizeChaineArticles.length; k++) {
-                                            if (optimizeChaineArticles[i] + optimizeChaineArticles[j] + optimizeChaineArticles[k] == 10) {
-                                                optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k] + '/');
-                                                optimizeChaineArticles.splice(j, 1);
-                                                optimizeChaineArticles.splice(k, 1);
-                                                i++;
-                                                console.log('ligne 130 concaténation 3 lots = 10')
-                                            } else { 
-                                                k++; 
-                                                // console.log('k = ' + k)
-                                             };
-                                        };                                       
-                                        j++;                                        
-                                    } else {
-                                        //relance la boucle                   
-                                        break;
-                                    }
-                                }
+                                    k++;                                    
+                                };
                             };
-                                optimizedColis.push(optimizeChaineArticles[i] + '/');
-                                console.log('ligne 145 si pas d\'optimisation par 2 et par 3 = 10');
-                                // Création d'un tableau reprenant les lot non optimisables
-                                reliquatColis.push(optimizeChaineArticles[i]);
-                                // console.log('reliquat: ' + reliquatColis)
-                                i++;                                                      
+                            j++;
                         } else {
-                            // optimizedColis.push(optimizeChaineArticles[i] + '!'); 
-                            console.log('4e condition ??');
-                            optimizedColis.push(optimizeChaineArticles[i]);
+                            //relance la boucle                   
+                            break;
+                        }
+                    }
+                };
+                if(optimizeChaineArticles[i]!=undefined){
+                    optimizedColis.push(optimizeChaineArticles[i] + '/');
+                    console.log('ligne 126 si pas d\'optimisation par 2 et par 3 = 10');
+                    console.log(optimizeChaineArticles[i]);
+                    // Création d'un tableau reprenant les lot non optimisables
                     reliquatColis.push(optimizeChaineArticles[i]);
-                    console.log('ligne 179 dernier article?');
-                    console.log('Chaine: ' + optimizeChaineArticles);
-                    console.log('reliquat: ' + reliquatColis)
-                    console.log('dernière ligne?');
-                    break; 
-                             };
-                   // };
-              //  } else {
-                    // gestion du dernier article
-                    // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                    // optimizedColis.push(optimizeChaineArticles[i]);
-                    // reliquatColis.push(optimizeChaineArticles[i]);
-                    // console.log('ligne 179 dernier article?');
-                    // console.log('Chaine: ' + optimizeChaineArticles);
                     // console.log('reliquat: ' + reliquatColis)
-                    // console.log('dernière ligne?');
-                    // break;                    
-            //  };
-            };
-      //  };
+                    i++;
+                }else{
+                    i++;
+                }
+            
+               
+            } else {
+                // optimizedColis.push(optimizeChaineArticles[i] + '!'); 
+                console.log('4e condition');
+                optimizedColis.push(optimizeChaineArticles[i]);
+                console.log(optimizeChaineArticles[i]);
+                reliquatColis.push(optimizeChaineArticles[i]);
+                console.log('ligne 154 dernier article?');
+                console.log('Chaine: ' + optimizeChaineArticles);
+                console.log('reliquat: ' + reliquatColis);
+                console.log('Dernier article?' + optimizeChaineArticles[i]);
+                console.log('dernière ligne?');
+                break;
+            };           
+        };       
     };
 
     // fonction d'affichage
 
     function afficher() {
-        
+
         console.log('Let\'s go!')
         generateArticles();
 
