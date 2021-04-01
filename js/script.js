@@ -6,6 +6,7 @@ function init() {
     let optimizeChaineArticles = new Array;
     let colis = new Array;
     let optimizedColis = new Array;
+    let reliquatColis = new Array;
 
     // script optimisation colisage articles
 
@@ -84,24 +85,25 @@ function init() {
         let i = 0;
         optimizedColis = [];
         optimizeChaineArticles = [];
+        reliquatColis = [];
         optimizeChaineArticles = chaineArticles;
         while (i < optimizeChaineArticles.length) {
-            if (((optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] + optimizeChaineArticles[i + 2]) == 10)
-                && ((optimizeChaineArticles[i + 2] != undefined))) {
-                // console.log('colis de 3 séquences');
-                optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '' + optimizeChaineArticles[i + 2] + '/');
-                //  console.log('i = ' + i);
-                console.log('ligne 94 cumul 3 chaines consécutives = 10');
-                i = i + 3;
-            } else {
-                if (optimizeChaineArticles[i + 1] != undefined) {
-                    if (optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] == 10) {
-                        optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '/')
-                        //  console.log('i = ' + i);
-                        console.log('ligne 99 2 chaines consécutives = 10');
-                        i = i + 2;
-                    }
-                    else {
+            // if (((optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] + optimizeChaineArticles[i + 2]) == 10)
+            //     && ((optimizeChaineArticles[i + 2] != undefined))) {
+            //     // console.log('colis de 3 séquences');
+            //     optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '' + optimizeChaineArticles[i + 2] + '/');
+            //     console.log('i = ' + optimizeChaineArticles[i] + 'i+1'+optimizeChaineArticles[i+1]+ 'i+2'+optimizeChaineArticles[i+2]);
+            //     console.log('ligne 94 cumul 3 chaines consécutives = 10');
+            //     i = i + 3;
+            // } else {
+            //     if (optimizeChaineArticles[i + 1] != undefined) {
+            //         if (optimizeChaineArticles[i] + optimizeChaineArticles[i + 1] == 10) {
+            //             optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[i + 1] + '/')
+            //             console.log('ligne 101 2 chaines consécutives = 10');
+            //            // i = i + 2;
+            //             i++;
+            //         }
+            //         else {
                         // Ecriture de l'algo d'optimisation des séquences à apairer
                         
                         if (optimizeChaineArticles[i + 1] != undefined) {
@@ -112,82 +114,72 @@ function init() {
                                     optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
                                     console.log('Article à supprimer: ' + optimizeChaineArticles.splice(j, 1));
                                     optimizeChaineArticles.splice(j, 1);
-                                    console.log('push ligne 113');
-                                    //  console.log('optimizeChaineArticles' + optimizeChaineArticles);
-                                    //  console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                                    //  console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
+                                    console.log('ligne 113 algo optimisation 2 colis = 10');
                                     i++;
                                 } else {
-                                    if (optimizeChaineArticles[j + 1] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] <= 10)) {
+                                    if (optimizeChaineArticles[j + 1] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] != 10)) {
 
                                         // Si le lot d'articles ne se complète pas avec le suivant
 
-                                        let k = j + 1;
+                                        let k;
 
                                         for (k = j + 1; k < optimizeChaineArticles.length; k++) {
                                             if (optimizeChaineArticles[i] + optimizeChaineArticles[j] + optimizeChaineArticles[k] == 10) {
                                                 optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k] + '/');
-                                                i = i + 3;
-                                                console.log('push ligne 130')
-                                            } else { k++; console.log('k = ' + k) };
-
-                                        };
-                                        // optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
-                                        // console.log('boucle interne 2');                                        
-                                        // optimizeChaineArticles.splice(j, 1);
-                                        // console.log('Article à supprimer: ' + optimizeChaineArticles.splice(j, 1));
-                                        // console.log('Colis optimisé ' + optimizedColis );
-                                        j++;
-                                        // console.log('optimizeChaineArticles' + optimizeChaineArticles);
-                                        // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                                        // console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
-
+                                                optimizeChaineArticles.splice(j, 1);
+                                                optimizeChaineArticles.splice(k, 1);
+                                                i++;
+                                                console.log('ligne 130 concaténation 3 lots = 10')
+                                            } else { 
+                                                k++; 
+                                                // console.log('k = ' + k)
+                                             };
+                                        };                                       
+                                        j++;                                        
                                     } else {
                                         //relance la boucle                   
                                         break;
                                     }
-
                                 }
-
                             };
-                            if (optimizeChaineArticles[i] != undefined) {
                                 optimizedColis.push(optimizeChaineArticles[i] + '/');
-                                console.log('push ligne 152');
-                                i++;
-                            } else { i++ };
-
-
-                            // console.log('i = ' + i);
-                            // console.log('j = ' + j);
-                            // console.log('3e condition');
-                            // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                            // console.log('optimizeChaineArticles[j]' + optimizeChaineArticles[j]);
-                            // optimizedColis.push(optimizeChaineArticles[i]);
-                            // i++;
+                                console.log('ligne 145 si pas d\'optimisation par 2 et par 3 = 10');
+                                // Création d'un tableau reprenant les lot non optimisables
+                                reliquatColis.push(optimizeChaineArticles[i]);
+                                // console.log('reliquat: ' + reliquatColis)
+                                i++;                                                      
                         } else {
-                            // gestion du dernier article
-                            // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                            // optimizedColis.push(optimizeChaineArticles[i]);
-                            console.log('4e condition');
-                            break;
-                        };
-                    };
-                } else {
+                            // optimizedColis.push(optimizeChaineArticles[i] + '!'); 
+                            console.log('4e condition ??');
+                            optimizedColis.push(optimizeChaineArticles[i]);
+                    reliquatColis.push(optimizeChaineArticles[i]);
+                    console.log('ligne 179 dernier article?');
+                    console.log('Chaine: ' + optimizeChaineArticles);
+                    console.log('reliquat: ' + reliquatColis)
+                    console.log('dernière ligne?');
+                    break; 
+                             };
+                   // };
+              //  } else {
                     // gestion du dernier article
                     // console.log('optimizeChaineArticles[i]' + optimizeChaineArticles[i]);
-                    optimizedColis.push(optimizeChaineArticles[i]);
-                    console.log('push ligne 179');
-                    console.log('Chaine: ' + optimizeChaineArticles);
-                    break;
-                };
+                    // optimizedColis.push(optimizeChaineArticles[i]);
+                    // reliquatColis.push(optimizeChaineArticles[i]);
+                    // console.log('ligne 179 dernier article?');
+                    // console.log('Chaine: ' + optimizeChaineArticles);
+                    // console.log('reliquat: ' + reliquatColis)
+                    // console.log('dernière ligne?');
+                    // break;                    
+            //  };
             };
-        };
+      //  };
     };
 
     // fonction d'affichage
 
     function afficher() {
-
+        
+        console.log('Let\'s go!')
         generateArticles();
 
         let affichageChaineArticles = document.getElementById("affichageChaineArticles");
