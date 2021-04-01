@@ -118,10 +118,14 @@ function init() {
                             };
                             j++;
                         } else {
-                            //relance la boucle                   
+                            //relance la boucle                                             
                             break;
-                        }
-                    }
+                        }console.log('test');
+                    }// algo d'optimisation des reliquats à positionner ici sur lots de 2                     
+                if(i == optimizeChaineArticles.length){
+
+                    console.log('Positionnement algo reliquat 2')
+                };                    
                 };
                 if(optimizeChaineArticles[i]!=undefined){
                     optimizedColis.push(optimizeChaineArticles[i] + '/');
@@ -147,6 +151,22 @@ function init() {
                 console.log('reliquat: ' + reliquatColis);
                 console.log('Dernier article?' + optimizeChaineArticles[i]);
                 console.log('dernière ligne?');
+                // Algo optimisation si dernier lot = 1
+                if(i == optimizeChaineArticles.length-1){
+                    console.log('Positionnement algo reliquat 1');
+                    let l = 0;
+                    let m = l + 1;
+                    while(l < reliquatColis.length){
+                        if(reliquatColis[l] + reliquatColis[m] <= 10){
+                            optimizedColis.push(reliquatColis[l]+''+reliquatColis[m]+'/');
+                            reliquatColis.slice(m,1);
+                            l++
+                        }else{
+                            optimizedColis.push(reliquatColis[l]+'/');
+                            l++
+                        }                        
+                    }
+                }
                 break;
             };           
         };       
