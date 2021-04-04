@@ -67,36 +67,51 @@ function init() {
         optimizeChaineArticles = [];
         reliquatColis = [];
         optimizeChaineArticles = chaineArticles;
+        console.log('chaineArticles démarrage: ' + chaineArticles);
+        console.log('optimizeChaineArticles démarrage: ' + optimizeChaineArticles);
         while (i < optimizeChaineArticles.length) {
             if (optimizeChaineArticles[i + 1] != undefined) {
-                let j;
-                for (j = i + 1; j < optimizeChaineArticles.length; j + 1) {
+                let j = i + 1;
+                // for (j = i + 1; j < optimizeChaineArticles.length; j + 1) {
+                while (j < optimizeChaineArticles.length){
                     if (optimizeChaineArticles[i] + optimizeChaineArticles[j] == 10) {
                         optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
-                        //  console.log('Articles push: ' + optimizeChaineArticles[i] + '' + optimizeChaineArticles[j]);
-                        optimizeChaineArticles.splice(j, 1);
+                        console.log('Articles push: ' + optimizeChaineArticles[i] + '' + optimizeChaineArticles[j]);
+                        console.log('L 78 Splice J: '+optimizeChaineArticles.splice([j],1,''));
+                        optimizeChaineArticles.splice([j],1,''); 
+                        console.log('Chaîne: ' + optimizeChaineArticles);                       
                         //   console.log('ligne 113 algo optimisation 2 colis = 10');
-                        i++;
+                       // break;
+                       i++;
                     } else {
                         if (optimizeChaineArticles[i + 2] != undefined && (optimizeChaineArticles[i] + optimizeChaineArticles[j] != 10)) {
 
                             // Si le lot d'articles ne se complète pas avec le suivant
                             // Création d'un groupe de 3 lots d'articles = 10
 
-                            let k;
-
-                            for (k = j + 1; k < optimizeChaineArticles.length; k++) {
+                            // let k;
+                            let k = j + 1;
+                                                        
+                           // for (k = j + 1; k < optimizeChaineArticles.length; k++) {
+                            while(k < optimizeChaineArticles.length){
                                 if (optimizeChaineArticles[i] + optimizeChaineArticles[j] + optimizeChaineArticles[k] == 10) {
                                     optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k] + '/');
                                     // console.log('ligne 109 concaténation 3 lots = 10');
-                                    //    console.log('Push lot de 3 ' + optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k]);
-                                    optimizeChaineArticles.splice(j, 1);
-                                    optimizeChaineArticles.splice(k, 1);
+                                    console.log('Push lot de 3 ' + optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k]);
+                                    console.log('L 95 k splice = ' + optimizeChaineArticles.splice([k],1,''));
+                                    optimizeChaineArticles.splice([k],1,'');
+                                    console.log('L 97 j splice = ' + optimizeChaineArticles.splice([j],1,''));
+                                    optimizeChaineArticles.splice([j],1,'');
+                                    console.log('Chaîne: ' + optimizeChaineArticles); 
+                                    //break;
                                     i++;
                                 } else {
+                                    //console.log('k++ = ' + k);
                                     k++;
+                                    
                                 };
                             };
+                            //console.log('j++ = ' + j);
                             j++;
                         } else {
                             //relance la boucle                                             
@@ -107,23 +122,26 @@ function init() {
 
                     if (i == optimizeChaineArticles.length-1) {
                         console.log('Positionnement algo reliquat 2')
-                        let n = 0;
-                        let o = n + 1;
+                        let n = 0;                        
                         while (n < reliquatColis.length) {
+                            let o = n + 1;
                             if (reliquatColis[n] + reliquatColis[o] <= 10) {
                                 optimizedColis.push(reliquatColis[n] + '' + reliquatColis[o] + '/');
                                 console.log('Opti 2 ' + reliquatColis[n] + '' + reliquatColis[o] + '/');
-                                console.log('Sup 2 ' + reliquatColis.splice(o, 1))
-                                console.log('length ' + reliquatColis.length);
-                                console.log('n' + n);
-                                reliquatColis.splice(o, 1);
+                                reliquatColis.splice([o], 1)
+                               // console.log('Sup 2 ' + reliquatColis.splice(o, 1))
+                               // console.log('length ' + reliquatColis.length);
+                               // console.log('n' + n);
+                                console.log('Chaîne: ' + optimizeChaineArticles); 
+                               // reliquatColis.splice(o, 1);
                                 n++;
                             } else {
                                 optimizedColis.push(reliquatColis[n] + '/');
                                 console.log('non opti' + reliquatColis[n]);
+                                console.log('Chaîne: ' + optimizeChaineArticles); 
                                 n++;
-                            }
-                        }
+                            };
+                        };
                     };
                 };
                 if (optimizeChaineArticles[i] != undefined) {
@@ -131,43 +149,46 @@ function init() {
                     // console.log('ligne 126 si pas d\'optimisation par 2 et par 3 = 10');
                     //console.log(optimizeChaineArticles[i]);
                     // Création d'un tableau reprenant les lot non optimisables
+                    if(optimizeChaineArticles[i]!=''){
                     reliquatColis.push(optimizeChaineArticles[i]);
+                    console.log('Chaîne: ' + optimizeChaineArticles); 
                     // console.log('reliquat: ' + reliquatColis)
+                    };
                     i++;
                 } else {
-                    i++;
+                    break;
+                   // i++;
                     
                 }
-
             } else {
                 // optimizedColis.push(optimizeChaineArticles[i] + '!'); 
                 // console.log('4e condition');
                 // optimizedColis.push(optimizeChaineArticles[i]);
                 // console.log(optimizeChaineArticles[i]);
-                reliquatColis.push(optimizeChaineArticles[i]);
+                if(optimizeChaineArticles[i]!=''){reliquatColis.push(optimizeChaineArticles[i])};
                 // console.log('ligne 154 dernier article?');
                 console.log('Chaine: ' + optimizeChaineArticles);
-                console.log('reliquat: ' + reliquatColis);
+               // console.log('reliquat: ' + reliquatColis);
                 // console.log('Dernier article?' + optimizeChaineArticles[i]);
                 // console.log('dernière ligne?');
                 // Algo optimisation si dernier lot = 1
-               // reliquatColis = reliquatColis.sort(compareNombres);
-                console.log('reliquat trié'+ reliquatColis);
+                reliquatColis = reliquatColis.sort(compareNombres);
+                console.log('reliquat trié : ' + reliquatColis);
                 if (i == optimizeChaineArticles.length-1) {
                     console.log('Positionnement algo reliquat 1');
                     let l = 0;
-                    while (l < reliquatColis.length) {
-                        console.log('while l: ' + reliquatColis[l]);
+                    while (l <= reliquatColis.length) {
+                      //  console.log('while l: ' + reliquatColis[l]);
                         let m = l + 1;
                         while (m < reliquatColis.length) {
-                            console.log('while m: '+ reliquatColis[m]);
+                         //   console.log('while m: '+ reliquatColis[m]);
                             if (reliquatColis[l] + reliquatColis[m] <= 10) {
                                 optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + '/');
                                // console.log('Opti 2 ' + reliquatColis[l] + '' + reliquatColis[m] + '/');
-                                console.log('Sup 2 ' + reliquatColis.splice(m, 1))
+                             //   console.log('Sup 2 ' + reliquatColis.splice(m, 1))
                                 // console.log('l ' + l);
-                               // reliquatColis.splice(m, 1);
-                                console.log('reliquatColis ' + reliquatColis);                                
+                                reliquatColis.splice(m, 1);
+                             //   console.log('reliquatColis ' + reliquatColis);                                
                                 if(l<reliquatColis.length){
                                     console.log('L 172 + ' + reliquatColis[l]);
                                 l++;                                    
@@ -176,19 +197,19 @@ function init() {
                               //  optimizedColis.push(reliquatColis[l] + '/');
                               //  console.log('non opti' + reliquatColis[l]);                                
                               //  console.log(reliquatColis);
-                              console.log('L 179 + ' + reliquatColis[l]);
+                           //   console.log('L 179 + ' + reliquatColis[l]);
                               m++;
                             }
-                            console.log('L 182 +' + reliquatColis[l]);                            
+                         //   console.log('L 182 +' + reliquatColis[l]);                            
                             m++;
                         }
                         if(reliquatColis[l]!=undefined){
                         optimizedColis.push(reliquatColis[l] + '/');
-                        console.log('non opti' + reliquatColis[l]);                                
-                        console.log('reliquatColis' + reliquatColis);
-                        console.log('L 189 +' + reliquatColis[l]);
+                      //  console.log('non opti' + reliquatColis[l]);                                
+                      //  console.log('reliquatColis' + reliquatColis);
+                      //  console.log('L 189 +' + reliquatColis[l]);
                         l++;}else{
-                            console.log('L 191 +' + reliquatColis[l]);
+                       //     console.log('L 191 +' + reliquatColis[l]);
                             l++;
                         }
                     };
@@ -228,6 +249,7 @@ function init() {
         affichageNbColis.innerHTML = colis.length + ' cartons utilisés.';
 
         optimizeColis();
+        // console.log(optimizeChaineArticles);
 
         let affichageColisOptimized = document.getElementById("affichageOptimizedColis");
 
