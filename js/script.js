@@ -119,15 +119,18 @@ function init() {
             } else {
                 if (optimizeChaineArticles[i] != '') { reliquatColis.push(optimizeChaineArticles[i]) };
                 reliquatColis = reliquatColis.sort(compareNombres);
+                console.log('Let\s go!')
                 console.log('reliquat L 122: ' + reliquatColis);                
                 if (i == optimizeChaineArticles.length - 1) {
                     let l = 0;
                     while (l < reliquatColis.length) {
                         let m = l + 1;
-                        while (m <= reliquatColis.length) {
-                            if (reliquatColis[l] + reliquatColis[m] <= 10) {
+                        while (m < reliquatColis.length) {
+                            if (reliquatColis[l] + reliquatColis[m] == 10) {
                                 optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + '/');
+                                console.log('M: ' + reliquatColis[m]);
                                 reliquatColis.splice(m, 1);
+                                console.log('Reliquat: ' + reliquatColis);
                                 if (l < reliquatColis.length) {
                                     l++;
                                 };
@@ -138,27 +141,38 @@ function init() {
                         }
                         if (reliquatColis[l] != undefined) {
                             // pas terrible...
-                            if((reliquatColis[m+1]!=undefined)&&(reliquatColis[l] + reliquatColis[m]+reliquatColis[m  +1]<=10)){
-                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + reliquatColis[m+1] +'/');
+                            m = l + 1;
+                            if((reliquatColis[l + 2]!=undefined)&&(reliquatColis[l] + reliquatColis[m]+reliquatColis[m  +1]<=10)){
+                              //  if(reliquatColis[l+3] = undefined){
+                                    // optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + reliquatColis[m+1]);
+                                    // reliquatColis.splice(m + 1, 1,'');
+                                    // reliquatColis.splice(m, 1,'');
+                                    // console.log('L 147 l = ' + reliquatColis[l]);
+                                    // console.log('Reliquat: '+ reliquatColis);
+                                    // l++;  
+                              //  }else{
+                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + reliquatColis[m+1]);
                                 reliquatColis.splice(m+1, 1,'');
                                 reliquatColis.splice(m, 1,'');
-                                console.log('L 143 l = ' + reliquatColis[l]);
+                                console.log('L 154 l = ' + reliquatColis[l]);
                                 console.log('Reliquat: '+ reliquatColis);
                                 l++;
+                               // };
                                 };
                                 // else{
                                 // optimizedColis.push(reliquatColis[l] + '/');
                                 // console.log('L 148 l = ' + reliquatColis[l])
                                 // l++};
-                            // pas très propre...
-                            if((reliquatColis[l] + reliquatColis[m]) <= 10){
+                            // pas très propre...                                                        
+                            if(reliquatColis[l] + reliquatColis[m] <= 10){
                             optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + '/');
                             reliquatColis.splice(m, 1);
                             console.log('L 143 l = ' + reliquatColis[l])
                             l++;
                             }else{                            
                             optimizedColis.push(reliquatColis[l] + '/');
-                            console.log('L 141 l = ' + reliquatColis[l])
+                            console.log('L 160 l = ' + reliquatColis[l])
+                            console.log('L 160 m = ' + reliquatColis[m])
                             console.log('Push: ' + reliquatColis[l]);
                             l++
                         };
