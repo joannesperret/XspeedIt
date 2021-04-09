@@ -190,6 +190,7 @@ function init() {
 
         if ((optimizedColis.join('').substr(-1, 1)) === "/") {
             affichageColisOptimized.innerHTML = optimizedColis.join('').slice(0, -1);
+            optimizedColis.splice(-1,0);
             console.log('L 193 colis: ' + optimizedColis.length );
             console.log(optimizedColis);
         }
