@@ -190,13 +190,19 @@ function init() {
 
         if ((optimizedColis.join('').substr(-1, 1)) === "/") {
             affichageColisOptimized.innerHTML = optimizedColis.join('').slice(0, -1);
+            console.log('L 193 colis: ' + optimizedColis.length );
+            console.log(optimizedColis);
         }
         else {
             affichageColisOptimized.innerHTML = optimizedColis.join('');
+            console.log('L 197 colis: ' + optimizedColis.length );
+            console.log(optimizedColis);
         }
 
         let affichageNbColisOptimized = document.getElementById("affichageNbColisOptimized");
         affichageNbColisOptimized.innerHTML = optimizedColis.length + ' cartons utilisés.';
+        console.log('L 202 colis: ' + optimizedColis.length );
+        console.log(optimizedColis);
 
     }
 };
