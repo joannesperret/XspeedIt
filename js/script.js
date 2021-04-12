@@ -190,20 +190,14 @@ function init() {
 
         if ((optimizedColis.join('').substr(-1, 1)) === "/") {
             affichageColisOptimized.innerHTML = optimizedColis.join('').slice(0, -1);
-            optimizedColis.splice(-1,0);
-            console.log('L 193 colis: ' + optimizedColis.length );
-            console.log(optimizedColis);
+            optimizedColis.splice(-1,0);            
         }
         else {
-            affichageColisOptimized.innerHTML = optimizedColis.join('');
-            console.log('L 197 colis: ' + optimizedColis.length );
-            console.log(optimizedColis);
+            affichageColisOptimized.innerHTML = optimizedColis.join('');            
         }
 
         let affichageNbColisOptimized = document.getElementById("affichageNbColisOptimized");
-        affichageNbColisOptimized.innerHTML = optimizedColis.length + ' cartons utilisés.';
-        console.log('L 202 colis: ' + optimizedColis.length );
-        console.log(optimizedColis);
+        affichageNbColisOptimized.innerHTML = optimizedColis.length + ' cartons utilisés.';        
 
     }
 };
