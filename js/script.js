@@ -72,6 +72,7 @@ function init() {
                 while (j < optimizeChaineArticles.length) {
                     if (optimizeChaineArticles[i] + optimizeChaineArticles[j] == 10) {
                         optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '/');
+                      
                         optimizeChaineArticles.splice([j], 1, '');
                         i++;
                     } else {
@@ -80,6 +81,7 @@ function init() {
                             while (k < optimizeChaineArticles.length) {
                                 if (optimizeChaineArticles[i] + optimizeChaineArticles[j] + optimizeChaineArticles[k] == 10) {
                                     optimizedColis.push(optimizeChaineArticles[i] + '' + optimizeChaineArticles[j] + '' + optimizeChaineArticles[k] + '/');
+                                  
                                     optimizeChaineArticles.splice([k], 1, '');
                                     optimizeChaineArticles.splice([j], 1, '');
                                     i++;
@@ -99,10 +101,13 @@ function init() {
                             let o = n + 1;
                             if (reliquatColis[n] + reliquatColis[o] <= 10) {
                                 optimizedColis.push(reliquatColis[n] + '' + reliquatColis[o] + '/');
+              
                                 reliquatColis.splice([o], 1)
                                 n++;
                             } else {
+                     
                                 optimizedColis.push(reliquatColis[n] + '/');
+                            
                                 n++;
                             };
                         };
@@ -111,13 +116,15 @@ function init() {
                 if (optimizeChaineArticles[i] != undefined) {
                     if (optimizeChaineArticles[i] != '') {
                         reliquatColis.push(optimizeChaineArticles[i]);
+                                 
                     };
                     i++;
                 } else {
                     break;
                 }
             } else {
-                if (optimizeChaineArticles[i] != '') { reliquatColis.push(optimizeChaineArticles[i]) };
+                if (optimizeChaineArticles[i] != '') { reliquatColis.push(optimizeChaineArticles[i])             
+            };
                 reliquatColis = reliquatColis.sort(compareNombres);                
                 if (i == optimizeChaineArticles.length - 1) {
                     let l = 0;
@@ -125,7 +132,7 @@ function init() {
                         let m = l + 1;
                         while (m < reliquatColis.length) {
                             if (reliquatColis[l] + reliquatColis[m] == 10) {
-                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + '/');                                
+                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + '/');                                              
                                 reliquatColis.splice(m, 1);                                
                                 if (l < reliquatColis.length) {
                                     l++;
@@ -136,21 +143,22 @@ function init() {
                             m++;
                         }
                         if (reliquatColis[l] != undefined) {                            
-                            m = l + 1;
+                            m = l + 1;                           
                             if ((reliquatColis[l + 2] != undefined) && (reliquatColis[l] + reliquatColis[m] + reliquatColis[m + 1] <= 10)) {                                
-                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + reliquatColis[m + 1]);
+                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + reliquatColis[m + 1] + '/');             
                                 reliquatColis.splice(m + 1, 1, '');
-                                reliquatColis.splice(m, 1, '');
-                                
+                                reliquatColis.splice(m, 1, '');                                                               
                                 l++;                                
                             };                                                                                
-                            if (reliquatColis[l] + reliquatColis[m] <= 10) {
-                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + '/');
+                            if ((reliquatColis[l] + reliquatColis[m] <= 10) && (reliquatColis[l] + reliquatColis[m] ) != '') {
+                                optimizedColis.push(reliquatColis[l] + '' + reliquatColis[m] + '/');     
                                 reliquatColis.splice(m, 1);                                
                                 l++;
                             } else {
-                                optimizedColis.push(reliquatColis[l] + '/');                                
-                                l++
+                                if(reliquatColis[l] !=''){
+                                optimizedColis.push(reliquatColis[l] + '/');                                                   
+                                l++;}else{
+                                    l++;}
                             };
                         } else {
                             l++;
@@ -189,8 +197,7 @@ function init() {
         let affichageColisOptimized = document.getElementById("affichageOptimizedColis");
 
         if ((optimizedColis.join('').substr(-1, 1)) === "/") {
-            affichageColisOptimized.innerHTML = optimizedColis.join('').slice(0, -1);
-            optimizedColis.splice(-1,0);            
+            affichageColisOptimized.innerHTML = optimizedColis.join('').slice(0, -1);  
         }
         else {
             affichageColisOptimized.innerHTML = optimizedColis.join('');            
